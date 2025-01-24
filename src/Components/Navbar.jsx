@@ -33,7 +33,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-pink-500 p-4 shadow-lg rounded-b-lg">
+    <nav className="bg-green-500 p-4 shadow-lg rounded-b-lg">
       <div className="container mx-auto flex justify-between items-center">
         {/* App Name or Logo */}
         <Link to="/home" className="text-white text-3xl font-bold hover:text-pink-200 transition-colors">
