@@ -65,7 +65,7 @@ const Navbar = () => {
             </Button>
           ) : (
             <>
-              {/* User Sign In Link
+              {/* User Sign In Link */}
               <Link to="/user/signin">
                 <Button
                   auto
@@ -75,7 +75,7 @@ const Navbar = () => {
                 >
                   Sign In
                 </Button>
-              </Link> */}
+              </Link>
 
               {/* Admin Sign In Link */}
               <Link to="/admin/signin">
