@@ -1,10 +1,10 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./Components/Navbar";
 import HomePage from "./pages/Home";
-import AdminSignIn from "./Components/Admin Auth/AdminSignIn";
-import AdminSignUp from "./Components/Admin Auth/AdminSignUp";
-import UserSignIn from "./Components/UserAuth/SignIn";
-import UserSignUp from "./Components/UserAuth/SignUp";
+import AdminSignIn from "./Components/AdminSignIn";
+import AdminSignUp from "./Components/AdminSignUp";
+import UserSignIn from "./Components/SignIn";
+import UserSignUp from "./Components/SignUp";
 
 // Optional 404 Page
 import NotFound from "./pages/NotFound";
@@ -12,7 +12,7 @@ import NotFound from "./pages/NotFound";
 function App() {
   return (
     <Router>
-      <Navbar />
+      <Navbar /> {/* Navbar globally show hoga har page pe */}
       <div className="min-h-screen bg-gray-100 w-screen p-4">
         <Routes>
           {/* Root path for HomePage */}
