@@ -41,7 +41,7 @@ function Signin() {
       localStorage.setItem('token', response.data.token);
 
       // Redirect to home page
-      navigate('/home'); // Adjust based on your routes
+      navigate('/'); // Adjust based on your routes
     } catch (error) {
       const errorMessage = error.response?.data?.message || "Invalid email or password.";
       setError(errorMessage);  // Show the error message on failure

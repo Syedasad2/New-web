@@ -1,13 +1,13 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./Components/Navbar";
 import HomePage from "./pages/Home";
-import AdminSignIn from "./Components/Admin Auth/AdminSignIn";  // Import AdminSignIn
-import AdminSignUp from "./Components/Admin Auth/AdminSignUp";  // Import AdminSignUp
-import UserSignIn from "./Components/UserAuth/SignIn";    // Import UserSignIn
-import UserSignUp from "./Components/UserAuth/SignUp";    // Import UserSignUp
+import AdminSignIn from "./Components/Admin Auth/AdminSignIn";
+import AdminSignUp from "./Components/Admin Auth/AdminSignUp";
+import UserSignIn from "./Components/UserAuth/SignIn";
+import UserSignUp from "./Components/UserAuth/SignUp";
 
 // Optional 404 Page
-import NotFound from "./pages/NotFound";  // Create a NotFound page for undefined routes
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
@@ -15,8 +15,9 @@ function App() {
       <Navbar />
       <div className="min-h-screen bg-gray-100 w-screen p-4">
         <Routes>
+          {/* Root path for HomePage */}
           <Route path="/home" element={<HomePage />} />
-          
+
           {/* Admin Routes */}
           <Route path="/admin/signin" element={<AdminSignIn />} />
           <Route path="/admin/signup" element={<AdminSignUp />} />
