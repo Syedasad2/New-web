@@ -45,13 +45,13 @@ const Navbar = () => {
     <nav className="bg-white-500 p-4 shadow-lg rounded-b-lg">
       <div className="container mx-auto flex justify-between items-center">
         {/* App Name or Logo */}
-        <Link to="/home" className="text-white text-3xl font-bold hover:text-pink-200 transition-colors">
+        <Link to="/" className="text-white text-3xl font-bold hover:text-pink-200 transition-colors">
           My App
         </Link>
 
         {/* Navigation Links */}
         <div className="flex items-center space-x-6">
-          <Link to="/home" className="text-white hover:text-pink-200 transition-colors">Home</Link>
+          <Link to="/" className="text-white hover:text-pink-200 transition-colors">Home</Link>
 
           {user ? (
             <Button

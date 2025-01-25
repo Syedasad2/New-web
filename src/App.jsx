@@ -17,8 +17,6 @@ function App() {
         <Routes>
           {/* Root path for HomePage */}
           <Route path="/" element={<HomePage />} />
-          <Route path="/home" element={<HomePage />} /> 
-
           {/* Admin Routes */}
           <Route path="/admin/signin" element={<AdminSignIn />} />
           <Route path="/admin/signup" element={<AdminSignUp />} />
