@@ -11,7 +11,7 @@ const HomePage = () => {
         This is a simple homepage built using React and animated with CSS.
       </p>
       <Link
-        to="/signin"
+        to="/user/signin"
         className="text-xl text-blue-500 mt-4 animate__animated animate__fadeIn animate__delay-2s hover:text-blue-700 transition-colors duration-300"
       >
         Sign In

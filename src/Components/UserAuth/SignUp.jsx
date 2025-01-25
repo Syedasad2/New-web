@@ -38,7 +38,7 @@ function Signup() {
       setLoading(true);
 
       // API call to backend
-      const response = await axios.post("http://localhost:4000/user/register", {
+      const response = await axios.post("https://my-web-production-10ef.up.railway.app/user/register", {
         email,
         password,
         fullname, // send fullname
