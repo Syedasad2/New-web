@@ -1,6 +1,6 @@
-// Navbar.js
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { Button } from '@nextui-org/react';  // Optional for consistent button styling
 
 const Navbar = () => {
   const [user, setUser] = useState(null);
@@ -9,8 +9,17 @@ const Navbar = () => {
   // Fetch user from localStorage when the component mounts
   useEffect(() => {
     const fetchUser = () => {
-      const storedUser = JSON.parse(localStorage.getItem('user'));
-      setUser(storedUser);
+      const storedUser = localStorage.getItem('user');
+      if (storedUser) {
+        try {
+          setUser(JSON.parse(storedUser));  // Only parse if data exists
+        } catch (error) {
+          console.error("Error parsing user data from localStorage", error);
+          setUser(null); // Reset user if parsing fails
+        }
+      } else {
+        setUser(null);  // If no user is found, reset state
+      }
     };
 
     fetchUser();
@@ -33,11 +42,11 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-green-500 p-4 shadow-lg rounded-b-lg">
+    <nav className="bg-white-500 p-4 shadow-lg rounded-b-lg">
       <div className="container mx-auto flex justify-between items-center">
         {/* App Name or Logo */}
         <Link to="/home" className="text-white text-3xl font-bold hover:text-pink-200 transition-colors">
-          CuteApp
+          My App
         </Link>
 
         {/* Navigation Links */}
@@ -45,14 +54,41 @@ const Navbar = () => {
           <Link to="/home" className="text-white hover:text-pink-200 transition-colors">Home</Link>
 
           {user ? (
-            <button
+            <Button
               onClick={handleSignOut}
+              auto
+              flat
+              color="error"
               className="text-white hover:text-pink-200 transition-colors"
             >
               Logout
-            </button>
+            </Button>
           ) : (
-            <Link to="/signin" className="text-white hover:text-pink-200 transition-colors">Sign In</Link>
+            <>
+              {/* User Sign In Link */}
+              <Link to="/user/signin">
+                <Button
+                  auto
+                  flat
+                  color="gradient"
+                  className="text-black hover:text-pink-200 transition-colors"
+                >
+                  Sign In
+                </Button>
+              </Link>
+
+              {/* Admin Sign In Link */}
+              <Link to="/admin/signin">
+                <Button
+                  auto
+                  flat
+                  color="gradient"
+                  className="text-black hover:text-pink-200 transition-colors"
+                >
+                   Admin Login
+                </Button>
+              </Link>
+            </>
           )}
         </div>
       </div>
