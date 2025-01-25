@@ -16,7 +16,7 @@ function App() {
       <div className="min-h-screen bg-gray-100 w-screen p-4">
         <Routes>
           {/* Root path for HomePage */}
-          <Route path="/home" element={<HomePage />} />
+          <Route path="/" element={<HomePage />} />
 
           {/* Admin Routes */}
           <Route path="/admin/signin" element={<AdminSignIn />} />

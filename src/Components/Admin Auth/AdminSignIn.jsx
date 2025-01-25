@@ -34,7 +34,7 @@ const AdminSignIn = () => {
       alert('Logged in successfully!');
 
       // Redirect to the admin dashboard or other relevant page
-      navigate('/home');
+      navigate('/');
     } catch (error) {
       // Handle any error that occurs during the login request
       setError(error.response ? error.response.data.message : 'Something went wrong');
