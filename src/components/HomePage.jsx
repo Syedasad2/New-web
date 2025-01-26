@@ -27,7 +27,7 @@ const HomePage = () => {
         <div className="mb-6">
           <p className="text-lg mb-4">New to Saylani Welfare?</p>
           <Link to="/signup">
-            <button className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all">
+            <button className="px-6 py-3 bg-blue-600 text-black rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all">
               Sign Up
             </button>
           </Link>
@@ -37,7 +37,7 @@ const HomePage = () => {
         <div>
           <p className="text-lg mb-4">Already a member?</p>
           <Link to="/signin">
-            <button className="px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 transition-all">
+            <button className="px-6 py-3 bg-green-600 text-black rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 transition-all">
               Login
             </button>
           </Link>
