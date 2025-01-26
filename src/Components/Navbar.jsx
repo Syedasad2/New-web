@@ -33,12 +33,15 @@ const Navbar = () => {
   // Handle user logout
   const handleSignOut = async () => {
     try {
-      const response = await fetch("https://my-web-production-10ef.up.railway.app/users/logout", {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      });
+      const response = await fetch(
+        "https://my-web-production-10ef.up.railway.app/users/logout",
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
 
       if (response.ok) {
         localStorage.removeItem("user");
@@ -58,13 +61,19 @@ const Navbar = () => {
   return (
     <nav className="shadow-md py-4 px-6 w-screen">
       <div className="container mx-auto flex justify-between items-center">
-        <Link to="/" className="text-3xl font-bold text-black hover:text-gray-200 transition-all">
+        <Link
+          to="/"
+          className="text-3xl font-bold text-black hover:text-gray-200 transition-all"
+        >
           My App
         </Link>
 
         {/* Navigation Links */}
         <div className="flex items-center space-x-6">
-          <Link to="/" className="text-black text-lg hover:text-gray-700 transition-all">
+          <Link
+            to="/"
+            className="text-black text-lg hover:text-gray-700 transition-all"
+          >
             Home
           </Link>
 

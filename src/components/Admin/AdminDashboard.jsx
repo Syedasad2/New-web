@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 const AdminDashboard = () => {
   const [loanRequests, setLoanRequests] = useState([]);
@@ -15,23 +15,29 @@ const AdminDashboard = () => {
         setError(null);
 
         // Fetch loan requests
-        const loanResponse = await axios.get('https://my-web-production-10ef.up.railway.app/loans', {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}` // Ensure the token is sent in the header
+        const loanResponse = await axios.get(
+          "https://my-web-production-10ef.up.railway.app/loans",
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`, // Ensure the token is sent in the header
+            },
           }
-        });
+        );
         setLoanRequests(loanResponse.data);
 
         // Fetch users
-        const userResponse = await axios.get('https://my-web-production-10ef.up.railway.app/users', {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}` // Ensure the token is sent in the header
+        const userResponse = await axios.get(
+          "https://my-web-production-10ef.up.railway.app/users",
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`, // Ensure the token is sent in the header
+            },
           }
-        });
+        );
         setUsers(userResponse.data);
       } catch (error) {
-        setError('Error fetching data. Please try again later.');
-        console.error('Error fetching data:', error);
+        setError("Error fetching data. Please try again later.");
+        console.error("Error fetching data:", error);
       } finally {
         setLoading(false);
       }
@@ -49,7 +55,9 @@ const AdminDashboard = () => {
     <div className="flex justify-center items-center min-h-screen bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 p-6">
       <div className="bg-white p-8 rounded-lg shadow-2xl w-full max-w-4xl space-y-8">
         {/* Dashboard Header */}
-        <h2 className="text-3xl font-semibold text-center text-gray-800 mb-8">Admin Dashboard</h2>
+        <h2 className="text-3xl font-semibold text-center text-gray-800 mb-8">
+          Admin Dashboard
+        </h2>
 
         {/* Error message */}
         {error && (
@@ -72,12 +80,18 @@ const AdminDashboard = () => {
                 >
                   <div className="flex justify-between items-center">
                     <div>
-                      <p className="text-lg font-semibold text-gray-800">Loan ID: {loan.loanId}</p>
-                      <p className="text-sm text-gray-500">Status: {loan.status}</p>
+                      <p className="text-lg font-semibold text-gray-800">
+                        Loan ID: {loan.loanId}
+                      </p>
+                      <p className="text-sm text-gray-500">
+                        Status: {loan.status}
+                      </p>
                     </div>
                     <button
                       className="px-4 py-2 text-white bg-blue-600 rounded-md hover:bg-blue-700 transition-colors"
-                      onClick={() => alert(`More details for Loan ID: ${loan.loanId}`)}
+                      onClick={() =>
+                        alert(`More details for Loan ID: ${loan.loanId}`)
+                      }
                     >
                       View Details
                     </button>
@@ -102,12 +116,18 @@ const AdminDashboard = () => {
                 >
                   <div className="flex justify-between items-center">
                     <div>
-                      <p className="text-lg font-semibold text-gray-800">{user.name}</p>
-                      <p className="text-sm text-gray-500">Email: {user.email}</p>
+                      <p className="text-lg font-semibold text-gray-800">
+                        {user.name}
+                      </p>
+                      <p className="text-sm text-gray-500">
+                        Email: {user.email}
+                      </p>
                     </div>
                     <button
                       className="px-4 py-2 text-white bg-blue-600 rounded-md hover:bg-blue-700 transition-colors"
-                      onClick={() => alert(`View more details for ${user.name}`)}
+                      onClick={() =>
+                        alert(`View more details for ${user.name}`)
+                      }
                     >
                       View Details
                     </button>

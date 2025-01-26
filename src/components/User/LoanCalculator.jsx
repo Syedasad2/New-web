@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 const LoanCalculator = () => {
   const [loanData, setLoanData] = useState({
-    category: '',
-    subcategory: '',
-    initialDeposit: '',
-    loanPeriod: '',
+    category: "",
+    subcategory: "",
+    initialDeposit: "",
+    loanPeriod: "",
     estimatedLoan: 0,
   });
 
@@ -18,7 +18,9 @@ const LoanCalculator = () => {
 
   const handleCalculate = () => {
     // Simple logic to calculate loan estimation, you can modify this as required
-    const estimatedLoan = loanData.initialDeposit ? loanData.initialDeposit * 1.2 : 0;
+    const estimatedLoan = loanData.initialDeposit
+      ? loanData.initialDeposit * 1.2
+      : 0;
     setLoanData({
       ...loanData,
       estimatedLoan,
@@ -28,11 +30,18 @@ const LoanCalculator = () => {
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-50">
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
-        <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">Loan Calculator</h2>
+        <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
+          Loan Calculator
+        </h2>
         <form className="space-y-4">
           {/* Loan Category */}
           <div className="flex flex-col">
-            <label htmlFor="category" className="text-sm font-medium text-gray-700">Select Loan Category</label>
+            <label
+              htmlFor="category"
+              className="text-sm font-medium text-gray-700"
+            >
+              Select Loan Category
+            </label>
             <select
               name="category"
               value={loanData.category}
@@ -49,7 +58,12 @@ const LoanCalculator = () => {
 
           {/* Loan Subcategory */}
           <div className="flex flex-col">
-            <label htmlFor="subcategory" className="text-sm font-medium text-gray-700">Select Subcategory</label>
+            <label
+              htmlFor="subcategory"
+              className="text-sm font-medium text-gray-700"
+            >
+              Select Subcategory
+            </label>
             <select
               name="subcategory"
               value={loanData.subcategory}
@@ -63,7 +77,12 @@ const LoanCalculator = () => {
 
           {/* Initial Deposit */}
           <div className="flex flex-col">
-            <label htmlFor="initialDeposit" className="text-sm font-medium text-gray-700">Initial Deposit</label>
+            <label
+              htmlFor="initialDeposit"
+              className="text-sm font-medium text-gray-700"
+            >
+              Initial Deposit
+            </label>
             <input
               type="number"
               name="initialDeposit"
@@ -76,7 +95,12 @@ const LoanCalculator = () => {
 
           {/* Loan Period */}
           <div className="flex flex-col">
-            <label htmlFor="loanPeriod" className="text-sm font-medium text-gray-700">Loan Period (in years)</label>
+            <label
+              htmlFor="loanPeriod"
+              className="text-sm font-medium text-gray-700"
+            >
+              Loan Period (in years)
+            </label>
             <input
               type="number"
               name="loanPeriod"
@@ -102,8 +126,12 @@ const LoanCalculator = () => {
         {/* Estimated Loan Breakdown */}
         {loanData.estimatedLoan > 0 && (
           <div className="mt-6 bg-blue-50 p-4 rounded-md">
-            <h3 className="text-xl font-semibold text-blue-600">Estimated Loan Breakdown</h3>
-            <p className="mt-2 text-gray-700">Estimated Loan: <strong>{loanData.estimatedLoan}</strong></p>
+            <h3 className="text-xl font-semibold text-blue-600">
+              Estimated Loan Breakdown
+            </h3>
+            <p className="mt-2 text-gray-700">
+              Estimated Loan: <strong>{loanData.estimatedLoan}</strong>
+            </p>
           </div>
         )}
       </div>

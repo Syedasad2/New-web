@@ -1,53 +1,61 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';  // For navigation after successful sign-up
+import React, { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom"; // For navigation after successful sign-up
 
 const AdminSignUp = () => {
-  const [fullname, setFullname] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [fullname, setFullname] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [profilePic, setProfilePic] = useState(null);
-  const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);  // To show loading indicator
-  const navigate = useNavigate();  // For redirecting after sign-up
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false); // To show loading indicator
+  const navigate = useNavigate(); // For redirecting after sign-up
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     // Basic validation
     if (!fullname || !email || !password || !profilePic) {
-      setError('All fields are required');
+      setError("All fields are required");
       return;
     }
 
-    setLoading(true);  // Show loading when the API request is in progress
+    setLoading(true); // Show loading when the API request is in progress
     const formData = new FormData();
-    formData.append('fullname', fullname);
-    formData.append('email', email);
-    formData.append('password', password);
-    formData.append('profilePic', profilePic);
+    formData.append("fullname", fullname);
+    formData.append("email", email);
+    formData.append("password", password);
+    formData.append("profilePic", profilePic);
 
     try {
       // Send POST request to the backend to create the admin
-      const response = await axios.post('https://my-web-production-10ef.up.railway.app/admin/signup', formData, {
-        headers: { 'Content-Type': 'multipart/form-data' },
-      });
+      const response = await axios.post(
+        "https://my-web-production-10ef.up.railway.app/admin/signup",
+        formData,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        }
+      );
 
       // If sign-up is successful, navigate to the admin login page or dashboard
-      alert('Admin created successfully!');
-      navigate('/admin/signin');  // Redirect to sign-in page after successful sign-up
+      alert("Admin created successfully!");
+      navigate("/admin/signin"); // Redirect to sign-in page after successful sign-up
     } catch (error) {
       // Handle any errors that occur during the sign-up process
-      setError(error.response ? error.response.data.message : 'Something went wrong');
+      setError(
+        error.response ? error.response.data.message : "Something went wrong"
+      );
     } finally {
-      setLoading(false);  // Hide loading when the request is completed
+      setLoading(false); // Hide loading when the request is completed
     }
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 p-6 w-screen">
+    <div className="flex items-center justify-center min-h-screen p-6 w-screen">
       <div className="bg-white p-8 rounded-lg shadow-xl max-w-md w-full">
-        <h2 className="text-4xl font-extrabold text-center text-gray-900 mb-8">Admin Sign Up</h2>
+        <h2 className="text-4xl font-extrabold text-center text-gray-900 mb-8">
+          Admin Sign Up
+        </h2>
 
         {/* Error message */}
         {error && <p className="text-red-500 text-center mb-4">{error}</p>}
@@ -106,7 +114,7 @@ const AdminSignUp = () => {
               disabled={loading}
               className="w-full p-3 bg-gradient-to-r from-blue-600 to-blue-500 text-white rounded-md shadow-lg hover:shadow-2xl transition-shadow duration-300"
             >
-              {loading ? 'Signing Up...' : 'Sign Up'}
+              {loading ? "Signing Up..." : "Sign Up"}
             </button>
           </div>
         </form>
@@ -115,7 +123,7 @@ const AdminSignUp = () => {
         <div className="mt-4 text-center">
           <p className="text-gray-600">Already have an account?</p>
           <button
-            onClick={() => navigate('/admin/signin')}
+            onClick={() => navigate("/admin/signin")}
             className="w-full p-3 bg-gradient-to-r from-green-600 to-green-500 text-white rounded-md shadow-lg hover:shadow-2xl transition-shadow duration-300"
           >
             Sign In

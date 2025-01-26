@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
 const HomePage = () => {
   return (
@@ -19,7 +19,8 @@ const HomePage = () => {
           Welcome to Saylani Microfinance
         </h1>
         <p className="text-lg mb-10">
-          Welcome to Saylani Welfare's Qarze Hasana Program. We provide interest-free loans to help you achieve your dreams.
+          Welcome to Saylani Welfare's Qarze Hasana Program. We provide
+          interest-free loans to help you achieve your dreams.
         </p>
 
         {/* Sign Up Section */}

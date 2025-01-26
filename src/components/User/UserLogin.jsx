@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom'; // Use useNavigate instead of useHistory
+import React, { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom"; // Use useNavigate instead of useHistory
 
 const UserLogin = () => {
   const [user, setUser] = useState({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   });
 
   const navigate = useNavigate(); // Replace useHistory with useNavigate
@@ -20,13 +20,16 @@ const UserLogin = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('https://my-web-production-10ef.up.railway.app/users/login', user);
-      alert('Login successful!');
+      const response = await axios.post(
+        "https://my-web-production-10ef.up.railway.app/users/login",
+        user
+      );
+      alert("Login successful!");
       // Assuming you store the user token for authentication in localStorage or cookies
-      localStorage.setItem('token', response.data.token);
+      localStorage.setItem("token", response.data.token);
       navigate("/dashboard"); // Replace history.push with navigate
     } catch (error) {
-      alert('Error during login!');
+      alert("Error during login!");
       console.error(error);
     }
   };
@@ -49,7 +52,7 @@ const UserLogin = () => {
               className="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all"
             />
           </div>
-          
+
           {/* Password Input */}
           <div className="relative">
             <input
@@ -61,7 +64,7 @@ const UserLogin = () => {
               className="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all"
             />
           </div>
-          
+
           {/* Submit Button */}
           <div className="text-center">
             <button
@@ -76,7 +79,7 @@ const UserLogin = () => {
         {/* Optional: Add a "Forgot Password" or "Sign Up" link */}
         <div className="text-center mt-4">
           <p className="text-sm text-gray-600">
-            Don't have an account?{' '}
+            Don't have an account?{" "}
             <a href="/signup" className="text-blue-500 hover:underline">
               Sign Up
             </a>
