@@ -29,7 +29,7 @@ const AdminSignUp = () => {
 
     try {
       // Send POST request to the backend to create the admin
-      const response = await axios.post('https://my-web-production-10ef.up.railway.app//admin/signup', formData, {
+      const response = await axios.post('https://my-web-production-10ef.up.railway.app/admin/signup', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
 
@@ -45,7 +45,7 @@ const AdminSignUp = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-100 to-blue-300 p-6 w-screen">
+    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 p-6 w-screen">
       <div className="bg-white p-8 rounded-lg shadow-xl max-w-md w-full">
         <h2 className="text-4xl font-extrabold text-center text-gray-900 mb-8">Admin Sign Up</h2>
 
@@ -61,7 +61,7 @@ const AdminSignUp = () => {
               value={fullname}
               onChange={(e) => setFullname(e.target.value)}
               required
-              className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
             />
           </div>
 
@@ -73,7 +73,7 @@ const AdminSignUp = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
             />
           </div>
 
@@ -85,7 +85,7 @@ const AdminSignUp = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
             />
           </div>
 
@@ -95,7 +95,7 @@ const AdminSignUp = () => {
               type="file"
               onChange={(e) => setProfilePic(e.target.files[0])}
               required
-              className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
             />
           </div>
 
@@ -104,12 +104,23 @@ const AdminSignUp = () => {
             <button
               type="submit"
               disabled={loading}
-              className="w-full p-3 bg-gradient-to-r from-blue-600 to-blue-500 text-black rounded-md shadow-lg hover:shadow-2xl transition-shadow duration-300"
+              className="w-full p-3 bg-gradient-to-r from-blue-600 to-blue-500 text-white rounded-md shadow-lg hover:shadow-2xl transition-shadow duration-300"
             >
               {loading ? 'Signing Up...' : 'Sign Up'}
             </button>
           </div>
         </form>
+
+        {/* Additional Link for Sign In */}
+        <div className="mt-4 text-center">
+          <p className="text-gray-600">Already have an account?</p>
+          <button
+            onClick={() => navigate('/admin/signin')}
+            className="w-full p-3 bg-gradient-to-r from-green-600 to-green-500 text-white rounded-md shadow-lg hover:shadow-2xl transition-shadow duration-300"
+          >
+            Sign In
+          </button>
+        </div>
       </div>
     </div>
   );

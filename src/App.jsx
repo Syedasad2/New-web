@@ -1,36 +1,106 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Navbar from "./Components/Navbar";
-import HomePage from "./pages/Home";
-import AdminSignIn from "./Components/AdminSignIn";
-import AdminSignUp from "./Components/AdminSignUp";
-import UserSignIn from "./Components/SignIn";
-import UserSignUp from "./Components/SignUp";
+import { createBrowserRouter, RouterProvider, Navigate, Outlet } from "react-router-dom"
+import HomePage from "./components/HomePage"
+import UserSignup from "./components/User/UserSignup"
+import UserLogin from "./components/User/UserLogin"
+import AdminLogin from "./components/Admin/AdminSignIn"
+import AdminSignUp from "./components/Admin/AdminSignUp"
+import AdminDashboard from "./components/Admin/AdminDashboard"
+import LoanRequestForm from "./components/User/LoanRequestForm"
+import LoanDetails from "./components/User/LoanDetails"
+import UserDashboard from "./components/User/UserDashboard"
+import Navbar from "./Components/Navbar"
 
-// Optional 404 Page
-import NotFound from "./pages/NotFound";
-// nwe chan
-function App() {
-  return (
-    <Router>
-      <Navbar /> {/* Navbar globally show hoga har page pe */}
-      <div className="min-h-screen bg-gray-100 w-screen p-4">
-        <Routes>
-          {/* Root path for HomePage */}
-          <Route path="/" element={<HomePage />} />
-          {/* Admin Routes */}
-          <Route path="/admin/signin" element={<AdminSignIn />} />
-          <Route path="/admin/signup" element={<AdminSignUp />} />
-
-          {/* User Routes */}
-          <Route path="/user/signin" element={<UserSignIn />} />
-          <Route path="/user/signup" element={<UserSignUp />} />
-
-          {/* Fallback route for 404 pages */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </div>
-    </Router>
-  );
+const isAuthenticated = () => {
+  return localStorage.getItem("user") ? true : false
 }
 
-export default App;
+const isAdmin = () => {
+  const user = localStorage.getItem("user")
+  if (!user) return false
+  try {
+    const parsedUser = JSON.parse(user)
+    return parsedUser && parsedUser.isAdmin === true
+  } catch (error) {
+    console.error("Error parsing user data:", error)
+    return false
+  }
+}
+
+const ProtectedRoute = ({ children }) => {
+  if (!isAuthenticated()) {
+    return <Navigate to="/signin" replace />
+  }
+  return children
+}
+
+const AdminProtectedRoute = ({ children }) => {
+  if (!isAdmin()) {
+    return <Navigate to="/admin/signin" replace />
+  }
+  return children
+}
+
+const Layout = () => (
+  <>
+    <Navbar />
+    <Outlet />
+  </>
+)
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Layout />,
+    children: [
+      { index: true, element: <HomePage /> },
+      { path: "signup", element: <UserSignup /> },
+      { path: "signin", element: <UserLogin /> },
+      {
+        path: "loan-request",
+        element: (
+          <ProtectedRoute>
+            <LoanRequestForm />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "loan-details/:loanId",
+        element: (
+          <ProtectedRoute>
+            <LoanDetails />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "dashboard",
+        element: (
+          <ProtectedRoute>
+            <UserDashboard />
+          </ProtectedRoute>
+        ),
+      },
+    ],
+  },
+  {
+    path: "admin",
+    children: [
+      { path: "signin", element: <AdminLogin /> },
+      { path: "signup", element: <AdminSignUp /> },
+      {
+        path: "dashboard",
+        element: (
+          <AdminProtectedRoute>
+            <AdminDashboard />
+          </AdminProtectedRoute>
+        ),
+      },
+    ],
+  },
+])
+
+const App = () => {
+  return <RouterProvider router={router} />
+}
+
+export default App
+

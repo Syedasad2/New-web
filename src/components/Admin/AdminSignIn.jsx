@@ -19,8 +19,8 @@ const AdminSignIn = () => {
     }
 
     try {
-      setLoading(true); 
-      const response = await axios.post('https://my-web-production-10ef.up.railway.app//admin/login', {
+      setLoading(true);
+      const response = await axios.post('https://my-web-production-10ef.up.railway.app/admin/login', {
         email,
         password,
       });
@@ -33,8 +33,8 @@ const AdminSignIn = () => {
       setError('');
       alert('Logged in successfully!');
 
-      // Redirect to the admin dashboard or other relevant page
-      navigate('/');
+      // Redirect to the admin dashboard
+      navigate('/admin/AdminDashboard'); // Redirect to admin dashboard after successful login
     } catch (error) {
       // Handle any error that occurs during the login request
       setError(error.response ? error.response.data.message : 'Something went wrong');
@@ -76,7 +76,7 @@ const AdminSignIn = () => {
           <button
             type="submit"
             className="w-full p-2 bg-gradient-to-r from-blue-600 to-blue-500 text-white rounded-md shadow-lg hover:shadow-2xl transition-shadow duration-300"
-            disabled={loading} 
+            disabled={loading}
           >
             {loading ? 'Signing In...' : 'Sign In'}
           </button>
