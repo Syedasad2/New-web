@@ -65,7 +65,7 @@ const Navbar = () => {
           to="/"
           className="text-3xl font-bold text-black hover:text-gray-200 transition-all"
         >
-          My App
+         Microfinance
         </Link>
 
         {/* Navigation Links */}

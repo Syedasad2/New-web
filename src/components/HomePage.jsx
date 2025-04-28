@@ -16,7 +16,7 @@ const HomePage = () => {
       {/* Content Section */}
       <div className="text-center text-gray-800">
         <h1 className="text-5xl font-extrabold leading-tight mb-6">
-          Welcome to Saylani Microfinance
+          Welcome to Microfinance
         </h1>
         <p className="text-lg mb-10">
           Welcome to Saylani Welfare's Qarze Hasana Program. We provide
