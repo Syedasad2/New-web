@@ -30,7 +30,7 @@ const AdminSignUp = () => {
     try {
       // Send POST request to the backend to create the admin
       const response = await axios.post(
-        "https://my-web-production-10ef.up.railway.app/admin/signup",
+        "http://localhost:4003/admin/signup",
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom"; // Use useNavigate instead of useHistory
+import { useNavigate, Link } from "react-router-dom";
 
 const UserLogin = () => {
   const [user, setUser] = useState({
@@ -8,7 +8,8 @@ const UserLogin = () => {
     password: "",
   });
 
-  const navigate = useNavigate(); // Replace useHistory with useNavigate
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setUser({
@@ -19,18 +20,23 @@ const UserLogin = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       const response = await axios.post(
-        "https://my-web-production-10ef.up.railway.app/users/login",
+        "http://localhost:4003/users/login",
         user
       );
-      alert("Login successful!");
-      // Assuming you store the user token for authentication in localStorage or cookies
+
+      // alert("Login successful!");
       localStorage.setItem("token", response.data.token);
-      navigate("/dashboard"); // Replace history.push with navigate
+      navigate("/dashboard");
     } catch (error) {
-      alert("Error during login!");
+      const message =
+        error.response?.data?.message || "Error during login!";
+      alert(message);
       console.error(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -41,7 +47,6 @@ const UserLogin = () => {
           User Login
         </h2>
         <form onSubmit={handleSubmit} className="space-y-6">
-          {/* Email Input */}
           <div className="relative">
             <input
               type="email"
@@ -49,11 +54,11 @@ const UserLogin = () => {
               value={user.email}
               onChange={handleChange}
               placeholder="Email"
+              required
               className="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all"
             />
           </div>
 
-          {/* Password Input */}
           <div className="relative">
             <input
               type="password"
@@ -61,28 +66,30 @@ const UserLogin = () => {
               value={user.password}
               onChange={handleChange}
               placeholder="Password"
+              required
               className="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all"
             />
           </div>
 
-          {/* Submit Button */}
           <div className="text-center">
             <button
               type="submit"
-              className="w-full py-3 bg-blue-600 text-black rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all"
+              disabled={loading}
+              className={`w-full py-3 ${
+                loading ? "bg-gray-400 cursor-not-allowed" : "bg-blue-600"
+              } text-black rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all`}
             >
-              Login
+              {loading ? "Logging in..." : "Login"}
             </button>
           </div>
         </form>
 
-        {/* Optional: Add a "Forgot Password" or "Sign Up" link */}
         <div className="text-center mt-4">
           <p className="text-sm text-gray-600">
             Don't have an account?{" "}
-            <a href="/signup" className="text-blue-500 hover:underline">
+            <Link to="/signup" className="text-blue-500 hover:underline">
               Sign Up
-            </a>
+            </Link>
           </p>
         </div>
       </div>

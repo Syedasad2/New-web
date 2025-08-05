@@ -10,7 +10,7 @@ const LoanDetails = () => {
     const fetchLoanDetail = async () => {
       try {
         const response = await axios.get(
-          `https://my-web-production-10ef.up.railway.app/loan/${loanId}`
+          `http://localhost:4003/loan/${loanId}`
         );
         setLoanDetail(response.data);
       } catch (error) {

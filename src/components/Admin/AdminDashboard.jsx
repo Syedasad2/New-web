@@ -16,7 +16,7 @@ const AdminDashboard = () => {
 
         // Fetch loan requests
         const loanResponse = await axios.get(
-          "https://my-web-production-10ef.up.railway.app/loans",
+          "http://localhost:4003/loans",
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`, // Ensure the token is sent in the header

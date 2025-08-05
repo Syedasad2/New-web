@@ -1,5 +1,5 @@
 import { createBrowserRouter, RouterProvider, Navigate, Outlet } from "react-router-dom"
-import HomePage from "./components/HomePage"
+import HomePage from "./pages/HomePage"
 import UserSignup from "./components/User/UserSignup"
 import UserLogin from "./components/User/UserLogin"
 import AdminLogin from "./components/Admin/AdminSignIn"

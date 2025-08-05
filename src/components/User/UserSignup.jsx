@@ -9,7 +9,7 @@ const UserSignup = () => {
     email: '',
     password: '',
   });
-
+    const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
@@ -43,10 +43,10 @@ const UserSignup = () => {
 
     try {
       // Send request to backend API
-      const response = await axios.post('https://my-web-production-10ef.up.railway.app/users/register', user);
+      const response = await axios.post('http://localhost:4003/users/register', user);
 
       if (response.status === 201) {
-        alert('User registered successfully!');
+        // alert('User registered successfully!');
         navigate('/signin'); // Redirect to login page after successful registration
       }
     } catch (error) {
@@ -125,7 +125,7 @@ const UserSignup = () => {
               type="submit"
               className="w-full p-3 bg-blue-600 text-black rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
-              Register
+              {loading ? "Logging in..." : "Register"}
             </button>
           </div>
         </form>
