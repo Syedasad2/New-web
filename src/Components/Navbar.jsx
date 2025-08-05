@@ -6,27 +6,33 @@ const Navbar = () => {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
 
-  // Fetch user from localStorage and update state
+  // Clean & simplified function to fetch user
   const fetchUser = () => {
-    const storedUser = localStorage.getItem("user");
-    if (storedUser && storedUser !== "undefined" && storedUser !== "null") {
-      try {
-        setUser(JSON.parse(storedUser));
-      } catch (error) {
-        console.error("Error parsing user data from localStorage", error);
-        setUser(null);
-      }
-    } else {
+    try {
+      const stored = localStorage.getItem("user");
+      setUser(
+        stored && stored !== "undefined" && stored !== "null"
+          ? JSON.parse(stored)
+          : null
+      );
+    } catch (err) {
+      console.error("Failed to parse user", err);
       setUser(null);
     }
   };
 
-  // Fetch user when component mounts or when localStorage changes
+  // Sync user on mount and on changes (even in same tab)
   useEffect(() => {
     fetchUser();
-    window.addEventListener("storage", fetchUser); // Listen for localStorage changes
+
+    const handleUserChange = () => fetchUser();
+
+    window.addEventListener("storage", handleUserChange);
+    window.addEventListener("userChanged", handleUserChange); // custom for same-tab
+
     return () => {
-      window.removeEventListener("storage", fetchUser);
+      window.removeEventListener("storage", handleUserChange);
+      window.removeEventListener("userChanged", handleUserChange);
     };
   }, []);
 
@@ -46,8 +52,9 @@ const Navbar = () => {
       if (response.ok) {
         localStorage.removeItem("user");
         localStorage.removeItem("token");
-        setUser(null); // Update state after logout
-        navigate("/"); // Navigate to home after logout
+        setUser(null);
+        window.dispatchEvent(new Event("userChanged")); // Notify all listeners
+        navigate("/");
       } else {
         alert("Logout failed. Please try again.");
         console.error("Logout failed");
@@ -65,11 +72,10 @@ const Navbar = () => {
           to="/"
           className="text-3xl font-bold text-black hover:text-gray-200 transition-all"
         >
-         Microfinance
+          Microfinance
         </Link>
 
-        {/* Navigation Links */}
-        <div className="flex items-center space-x-6">
+        <div className="flex flex-wrap items-center gap-4">
           <Link
             to="/"
             className="text-black text-lg hover:text-gray-700 transition-all"
@@ -79,10 +85,7 @@ const Navbar = () => {
 
           {user ? (
             <>
-              {/* Display User Name if logged in */}
               <span className="text-black text-lg">{user.name}</span>
-
-              {/* Logout Button */}
               <Button
                 onClick={handleSignOut}
                 auto
@@ -95,7 +98,6 @@ const Navbar = () => {
             </>
           ) : (
             <>
-              {/* User Sign In Link */}
               <Link to="/signin">
                 <Button
                   auto
@@ -107,7 +109,20 @@ const Navbar = () => {
                 </Button>
               </Link>
 
-              {/* Admin Sign In Link */}
+              <Link
+                to="/About"
+                className="text-black text-lg hover:text-gray-700 transition-all"
+              >
+                About
+              </Link>
+               <Link
+                to="/Contact"
+                className="text-black text-lg hover:text-gray-700 transition-all"
+              >
+                Contact
+              </Link>
+
+
               <Link to="/admin/signin">
                 <Button
                   auto
