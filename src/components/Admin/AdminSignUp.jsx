@@ -51,9 +51,9 @@ const AdminSignUp = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen p-6 w-screen">
+    <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <div className="bg-white p-8 rounded-lg shadow-xl max-w-md w-full">
-        <h2 className="text-4xl font-extrabold text-center text-gray-900 mb-8">
+        <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
           Admin Sign Up
         </h2>
 
@@ -69,7 +69,7 @@ const AdminSignUp = () => {
               value={fullname}
               onChange={(e) => setFullname(e.target.value)}
               required
-              className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
+              className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
@@ -81,7 +81,7 @@ const AdminSignUp = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
+              className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
@@ -93,7 +93,7 @@ const AdminSignUp = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
+              className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
@@ -112,7 +112,7 @@ const AdminSignUp = () => {
             <button
               type="submit"
               disabled={loading}
-              className="w-full p-3 bg-gradient-to-r from-blue-600 to-blue-500 text-white rounded-md shadow-lg hover:shadow-2xl transition-shadow duration-300"
+              className="w-full p-3 bg-blue-600 text-black rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               {loading ? "Signing Up..." : "Sign Up"}
             </button>

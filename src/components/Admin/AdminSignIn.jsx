@@ -12,7 +12,6 @@ const AdminSignIn = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    // Client-side validation for email and password
     if (!email || !password) {
       setError("Please provide both email and password.");
       return;
@@ -49,9 +48,9 @@ const AdminSignIn = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen p-6 w-screen">
-      <div className="bg-white p-8 rounded-lg shadow-xl max-w-md w-full">
-        <h2 className="text-4xl font-extrabold text-center text-gray-900 mb-8">
+    <div className="flex justify-center items-center min-h-screen bg-white">
+      <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+        <h2 className="text-3xl font-semibold text-center text-gray-700 mb-8">
           Admin Sign In
         </h2>
 
@@ -66,7 +65,7 @@ const AdminSignIn = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all"
           />
 
           {/* Password Input */}
@@ -76,13 +75,15 @@ const AdminSignIn = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
-            className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all"
           />
 
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full p-2 bg-gradient-to-r from-blue-600 to-blue-500 text-white rounded-md shadow-lg hover:shadow-2xl transition-shadow duration-300"
+           className={`w-full py-3 ${
+                loading ? "bg-gray-400 cursor-not-allowed" : "bg-blue-600"
+              } text-black rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all`}
             disabled={loading}
           >
             {loading ? "Signing In..." : "Sign In"}
@@ -94,7 +95,7 @@ const AdminSignIn = () => {
           <p className="text-gray-600">Don't have an account?</p>
           <button
             onClick={() => navigate("/admin/signup")}
-            className="w-full p-2 bg-gradient-to-r from-green-600 to-green-500 text-black rounded-md shadow-lg hover:shadow-2xl transition-shadow duration-300"
+            className="text-blue-500 hover:underline"
           >
             Sign Up
           </button>

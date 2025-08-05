@@ -98,18 +98,7 @@ const Navbar = () => {
             </>
           ) : (
             <>
-              <Link to="/signin">
-                <Button
-                  auto
-                  flat
-                  color="gradient"
-                  className="text-black hover:bg-blue-700"
-                >
-                  Sign In
-                </Button>
-              </Link>
-
-              <Link
+            <Link
                 to="/About"
                 className="text-black text-lg hover:text-gray-700 transition-all"
               >
@@ -121,17 +110,13 @@ const Navbar = () => {
               >
                 Contact
               </Link>
-
-
-              <Link to="/admin/signin">
-                <Button
-                  auto
-                  flat
-                  color="gradient"
-                  className="text-black hover:bg-blue-700"
-                >
+              <Link to="/signin"
+               className="text-black text-lg hover:text-gray-700 transition-all">
+                  Sign In
+              </Link>
+              <Link to="/admin/signin"
+               className="text-black text-lg hover:text-gray-700 transition-all">
                   Admin Login
-                </Button>
               </Link>
             </>
           )}
